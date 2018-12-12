@@ -7,7 +7,6 @@ Connection with Matlab
 
 from minicps.devices import Tank
 from minicps.protocols import ModbusProtocol
-
 from utils import S1_PROTOCOL
 from utils import TANK_SECTION
 from utils import RWT_INIT_LEVEL
@@ -16,24 +15,22 @@ from utils import PP_PERIOD_SEC
 import sys
 import logging
 import time
-
-
 import struct
 
 getBin = lambda x: x > 0 and str(bin(x))[2:] or "-" + str(bin(x))[3:]
+
 
 def floatToBinary64(value):
     val = struct.unpack('Q', struct.pack('d', value))[0]
     return getBin(val)
 
+
 def binaryToFloat(value):
     hx = hex(int(value, 2))
     return struct.unpack("d", struct.pack("q", int(hx, 16)))[0]
 
-# floats are represented by IEEE 754 floating-point format which are
-# 64 bits long (not 32 bits)
+
 S1_ADDR = IP['s1'] + ':502'
-#S1_ADDR = 'localhost' + ':502'
 logging.basicConfig(format='PhyP::%(asctime)s::%(levelname)s::%(message)s', filename='master_log.log', level=logging.DEBUG)
 
 # sensors & pump definition
@@ -44,6 +41,7 @@ s4 = ('s4', 1)
 s5 = ('s5', 1)
 p2 = ('p2', 1)
 CO_0_2b = ('HR', 2, '2b')
+
 
 class RawWaterTank(Tank):
 
@@ -56,13 +54,11 @@ class RawWaterTank(Tank):
         ('s5', 1, 'REAL'),
     )
 
-
     def pre_loop(self):
 
         logging.debug('Enters pre_loop.')
         self.set(p2, 0)
         self.level = self.set(s5, 0.800)
-
 
     def main_loop(self):
 

@@ -59,19 +59,60 @@ FIT_201_THRESH = 1.00
 
 # IP, Netmask and MAC addresses
 
-CO_0_2a = ('HR', 0, '2a')
+# Here you define the topology
+# use the HOSTS list to define the names of the hosts
+# this includes PLCs, attackers or any other host but NOT the coordinator or switches
+
+HOSTS = ['plc1', 'plc2', 'plc3', 'attacker']
+
+# use the SWITCHES list to define the names of the coordinators or switches
+
+SWITCHES = ['coordinator']
+
+# use the IP dictionary to define the IP addresses of each component
+# i.e. hosts and switches
+
 IP = {
     'plc1': '192.168.1.10',
     'plc2': '192.168.1.20',
-    's1': '172.20.81.141',
+    'plc3': '192.168.1.30',
+    'attacker': '192.168.1.40',
+    'coordinator': '172.20.81.141',
 }
 
 NETMASK = '/24'
 
+# use the NETMASK dictionary to define the netmasks
+
+NETMASKS = {
+    'plc1': '/24',
+    'plc2': '/24',
+    'plc3': '/24',
+    'attacker': '/24',
+    'coordinator': '/24',
+}
+
+# use the MAC dictionary to define the MAC addresses of each component
+# i.e. hosts and switches
+
 MAC = {
     'plc1': '00:1D:9C:C7:B0:70',
     'plc2': '00:1D:9C:C8:BC:46',
-    's1': '08:00:27:39:a6:83',
+    'plc3': '00:1D:9C:C8:BC:47',
+    'attacker': '00:1D:9C:C8:BC:48',
+    'coordinator': '08:00:27:39:a6:83',
+}
+
+# use the CONNECTIONS dictionary to define the connections between
+# hosts and switches
+# note: connections are bidirectional, therefore define them once
+
+CONNECTIONS = {
+    'plc1': 'coordinator',
+    'plc2': 'coordinator',
+    'plc3': 'coordinator',
+    'attacker': 'coordinator',
+    'coordinator': 'coordinator',
 }
 
 # PLC1 Data
@@ -111,7 +152,7 @@ PLC2_PROTOCOL = {
     'server': PLC2_SERVER
 }
 S1_TAGS = (10, 10, 10, 100)
-S1_ADDR = IP['s1']
+S1_ADDR = IP['coordinator']
 S1_SERVER = {
     'address': S1_ADDR,
     'tags': S1_TAGS
@@ -121,6 +162,9 @@ S1_PROTOCOL = {
     'mode': 1,
     'server': S1_SERVER
 }
+
+
+CO_0_2a = ('HR', 0, '2a')
 
 # TODO
 PLC1_DATA = {
