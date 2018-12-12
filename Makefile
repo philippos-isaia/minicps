@@ -13,8 +13,6 @@ PYTHON_OPTS =
 # -s: don't capture std output
 # nosetests -s tests/devices_tests.py:fun_name
 
-# TODO: add testing conditionals for verbosity, doctest plugin and coverage plugin
-# http://web.mit.edu/gnu/doc/html/make_7.html
 
 # NOTE: sudo because of mininet
 TESTER = sudo nosetests
@@ -26,36 +24,6 @@ UPLOADER=twine
 # }}}
 
 .PHONY: tests tests-travis clean
-
-# TOY {{{1
-
-toy:
-	cd examples/toy; $(PYTHON) $(PYTHON_OPTS) run.py; cd ../..
-
-toy-init:
-	cd examples/toy; $(PYTHON) $(PYTHON_OPTS) init.py; cd ../..
-
-test-toy:
-	cd examples/toy; $(TESTER) $(TESTER_OPTS) tests.py; cd ../..
-
-# TODO
-test-toy-cover:
-	cd examples/toy; $(TESTER) $(TESTER_OPTS_COV_HTML) tests.py; cd ../..
-
-# }}}
-
-# SWAT-S1 {{{1
-
-swat-s1-init:
-	cd examples/swat-s1; $(PYTHON) $(PYTHON_OPTS) init.py; cd ../..
-
-swat-s1:
-	cd examples/swat-s1; $(PYTHON) $(PYTHON_OPTS) run.py; cd ../..
-
-test-swat-s1:
-	cd examples/swat-s1; $(TESTER) $(TESTER_OPTS) tests.py; cd ../..
-
-# }}}
 
 # Matlab-Sc1 {{{1
 
