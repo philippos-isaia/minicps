@@ -13,7 +13,7 @@ import sys
 
 class MatlabS1(MiniCPS):
 
-    """Creating main container for PLC1, PLC2 and s1 (switch)"""
+    """Creating main container for hosts and switches"""
 
     def __init__(self, name, net):
 
@@ -31,10 +31,12 @@ class MatlabS1(MiniCPS):
         # plc1.cmd(sys.executable + ' plc1.py &')
         # Run PLC1 Code
         # plc2.cmd(sys.executable + ' plc2.py &')
+
         # Start Wireshark (tshark) on PLC1 capturing all interfaces
         plc1.cmd('touch plc1-eth0.pcap')
         plc1.cmd('chmod o=rw plc1-eth0.pcap')
         plc1.cmd('tshark -ni any -w plc1-eth0.pcap &')
+
         # Physical Process Might not be needed (check this out)
         # s1.cmd(sys.executable + ' physical_process.py &')
 
