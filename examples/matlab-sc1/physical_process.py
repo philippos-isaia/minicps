@@ -1,7 +1,7 @@
 """
 Scenario S1
 physical_process.py
-Runs on switch s1
+Runs on switch s1 (coordinator)
 Connection with Matlab
 """
 
@@ -12,7 +12,7 @@ from utils import S1_PROTOCOL
 from utils import TANK_SECTION
 from utils import RWT_INIT_LEVEL
 from utils import STATE, IP, CO_0_2a
-from utils import PP_PERIOD_SEC, PP_SAMPLES
+from utils import PP_PERIOD_SEC
 import sys
 import logging
 import time
@@ -80,24 +80,6 @@ class RawWaterTank(Tank):
             print 'Sensor S4 Value: '+str(n04)
             n05 = self.receive(('HR', 32), '172.20.81.141:502')
             print 'Sensor S5 Value: '+str(n05)
-            #+','+str(n02)+','+str(n03)+','+str(n04)+','+str(n05)+','+str(n06)+','+str(n07)
-            #tttt=floatToBinary64(float(n01))
-            #print 'float to binary: ' + str(floatToBinary64(tttt))
-            #print 'binary to float: ' + str(binaryToFloat(tttt))
-            # self.send(('CO', 0, '2a'), False, '172.20.81.141:502')
-            # new_level = self.receive(('CO', 0, '2a'), '172.20.81.141:502')
-            '''
-            try:
-                new_level = self.receive(('HR', 2), 502)
-                print (new_level)
-            except:
-                print 'problem'
-            '''
-            # compute water volume
-            # water_volume = self.section * new_level
-            # test = self.receive(('CO', 62), '172.20.81.141:5020')
-            # print test
-            # logging.debug('Received from 172:...:38: '+test)
             time.sleep(PP_PERIOD_SEC)
 
 
