@@ -67,7 +67,7 @@ HOSTS = ['plc1', 'plc2', 'plc3', 'attacker']
 
 # use the SWITCHES list to define the names of the coordinators or switches
 
-SWITCHES = ['coordinator']
+SWITCHES = ['s1']
 
 # use the IP dictionary to define the IP addresses of each component
 # i.e. hosts and switches
@@ -77,7 +77,7 @@ IP = {
     'plc2': '192.168.1.20',
     'plc3': '192.168.1.30',
     'attacker': '192.168.1.40',
-    'coordinator': '172.20.81.141',
+    's1': '172.20.81.141',
 }
 
 NETMASK = '/24'
@@ -89,7 +89,7 @@ NETMASKS = {
     'plc2': '/24',
     'plc3': '/24',
     'attacker': '/24',
-    'coordinator': '/24',
+    's1': '/24',
 }
 
 # use the MAC dictionary to define the MAC addresses of each component
@@ -100,7 +100,7 @@ MAC = {
     'plc2': '00:1D:9C:C8:BC:46',
     'plc3': '00:1D:9C:C8:BC:47',
     'attacker': '00:1D:9C:C8:BC:48',
-    'coordinator': '08:00:27:39:a6:83',
+    's1': '08:00:27:39:a6:83',
 }
 
 # use the CONNECTIONS dictionary to define the connections between
@@ -108,11 +108,10 @@ MAC = {
 # note: connections are bidirectional, therefore define them once
 
 CONNECTIONS = {
-    'plc1': 'coordinator',
-    'plc2': 'coordinator',
-    'plc3': 'coordinator',
-    'attacker': 'coordinator',
-    'coordinator': 'coordinator',
+    'plc1': 's1',
+    'plc2': 's1',
+    'plc3': 's1',
+    'attacker': 's1',
 }
 
 # PLC1 Data
@@ -152,7 +151,7 @@ PLC2_PROTOCOL = {
     'server': PLC2_SERVER
 }
 S1_TAGS = (10, 10, 10, 100)
-S1_ADDR = IP['coordinator']
+S1_ADDR = IP['s1']
 S1_SERVER = {
     'address': S1_ADDR,
     'tags': S1_TAGS

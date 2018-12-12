@@ -25,8 +25,7 @@ class MatlabS1(MiniCPS):
         net.pingAll()
 
         # start devices
-        plc1, plc2, s1 = self.net.get(
-            'plc1', 'plc2', 's1')
+        plc1, plc2, s1 = self.net.get('plc1', 'plc2', 's1')
 
         # Run PLC2 Code
         # plc1.cmd(sys.executable + ' plc1.py &')

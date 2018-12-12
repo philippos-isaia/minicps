@@ -9,28 +9,18 @@ import logging
 
 logging.basicConfig(format='PhyP::%(asctime)s::%(levelname)s::%(message)s', filename='master_log.log', level=logging.DEBUG)
 
-print HOSTS
-print len(HOSTS)
-for host in HOSTS:
-    print host
-    print IP[host]
-    print NETMASKS[host]
-    print MAC[host]
+variables = {}
 
 
-'''
 class MatlabTopo(Topo):
 
     def build(self):
 
-        switch = self.addSwitch('s1')
+        for switch in SWITCHES:
+            variables[switch] = self.addSwitch(switch)
 
-        plc1 = self.addHost('plc1', ip=IP['plc1'] + NETMASK, mac=MAC['plc1'])
+        for host in HOSTS:
+            variables[host] = self.addHost(host, ip=IP[host]+NETMASKS[host], mac=MAC[host])
 
-        self.addLink(plc1, switch)
-
-        plc2 = self.addHost('plc2', ip=IP['plc2'] + NETMASK, mac=MAC['plc2'])
-
-        self.addLink(plc2, switch)
-
-'''
+        for connection in CONNECTIONS:
+            self.addLink(connection, CONNECTIONS[connection])
