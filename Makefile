@@ -57,6 +57,19 @@ test-swat-s1:
 
 # }}}
 
+# Matlab-Sc1 {{{1
+
+matlab-sc1-init:
+	cd examples/matlab-sc1; $(PYTHON) $(PYTHON_OPTS) init.py; cd ../..
+
+matlab-sc1:
+	cd examples/matlab-sc1; $(PYTHON) $(PYTHON_OPTS) run.py; cd ../..
+
+test-matlab-sc1:
+	cd examples/matlab-sc1; $(TESTER) $(TESTER_OPTS) tests.py; cd ../..
+
+# }}}
+
 # TESTS {{{1
 
 # ALL {{{2
