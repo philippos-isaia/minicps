@@ -27,9 +27,6 @@ UPLOADER=twine
 
 # Matlab-Sc1 {{{1
 
-matlab-sc1-init:
-	cd examples/matlab-sc1; $(PYTHON) $(PYTHON_OPTS) init.py; cd ../..
-
 matlab-sc1:
 	cd examples/matlab-sc1; $(PYTHON) $(PYTHON_OPTS) run.py; cd ../..
 

@@ -162,9 +162,6 @@ S1_PROTOCOL = {
     'server': S1_SERVER
 }
 
-
-CO_0_2a = ('HR', 0, '2a')
-
 # TODO
 PLC1_DATA = {
     'TODO': 'TODO',
@@ -173,29 +170,3 @@ PLC1_DATA = {
 PLC2_DATA = {
     'TODO': 'TODO',
 }
-
-PATH = 'matlab_sc1_db.sqlite'
-NAME = 'matlab_sc1'
-
-STATE = {
-    'name': NAME,
-    'path': PATH
-}
-
-SCHEMA = """
-CREATE TABLE matlab_sc1 (
-    name              TEXT NOT NULL,
-    pid               INTEGER NOT NULL,
-    value             TEXT,
-    PRIMARY KEY (name, pid)
-);
-"""
-
-SCHEMA_INIT = """
-    INSERT INTO matlab_sc1 VALUES ('s1', 1, '0.0');
-    INSERT INTO matlab_sc1 VALUES ('s2', 1, '0.0');
-    INSERT INTO matlab_sc1 VALUES ('s3', 1, '0.0');
-    INSERT INTO matlab_sc1 VALUES ('s4', 1, '0.0');
-    INSERT INTO matlab_sc1 VALUES ('s5', 1, '0.0');
-    INSERT INTO matlab_sc1 VALUES ('p2', 1, '100');
-"""

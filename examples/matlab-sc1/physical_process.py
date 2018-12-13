@@ -10,7 +10,7 @@ from minicps.protocols import ModbusProtocol
 from utils import S1_PROTOCOL
 from utils import TANK_SECTION
 from utils import RWT_INIT_LEVEL
-from utils import STATE, IP, CO_0_2a
+from utils import IP, CO_0_2a
 from utils import PP_PERIOD_SEC
 import sys
 import logging
@@ -31,15 +31,17 @@ def binaryToFloat(value):
 
 
 S1_ADDR = IP['s1'] + ':502'
-logging.basicConfig(format='PhyP::%(asctime)s::%(levelname)s::%(message)s', filename='master_log.log', level=logging.DEBUG)
+logging.basicConfig(format='PhyP::%(asctime)s::%(levelname)s::%(message)s', filename='logs/master_log.log', level=logging.DEBUG)
 
-# sensors & pump definition
-s1 = ('s1', 1)
-s2 = ('s2', 1)
-s3 = ('s3', 1)
-s4 = ('s4', 1)
-s5 = ('s5', 1)
-p2 = ('p2', 1)
+# sensors & actuators definition
+sen_1 = ('s1', 1)
+sen_2 = ('s2', 1)
+sen_3 = ('s3', 1)
+sen_4 = ('s4', 1)
+sen_5 = ('s5', 1)
+pump_2 = ('p2', 1)
+
+#
 CO_0_2b = ('HR', 2, '2b')
 
 
@@ -83,7 +85,6 @@ if __name__ == '__main__':
 
     rwt = RawWaterTank(
         name='rwt',
-        state=STATE,
         protocol=S1_PROTOCOL,
         section=TANK_SECTION,
         level=RWT_INIT_LEVEL
