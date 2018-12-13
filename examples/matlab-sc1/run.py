@@ -50,6 +50,4 @@ if __name__ == "__main__":
     topo = MatlabTopo()
     net = Mininet(topo=topo, controller=OVSController)
 
-    matlab_s1 = MatlabS1(
-        name='matlab_s1',
-        net=net)
+    matlab_s1 = MatlabS1(name='matlab_s1', net=net)

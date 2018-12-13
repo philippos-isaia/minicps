@@ -50,12 +50,22 @@ class RawWaterTank(Tank):
         logging.debug('Enters pre_loop.')
         self.set(pump_2, 0)
         self.level = self.set(sen_5, 0.800)
+        #RTU2B_ADDR = IP['rtu2b'] + ':502'
+        #HR_0_2a = ('HR', 0, '2a')
+        #self.send(HR_0_2a, registers, '172.20.81.141:502', count=3)
+        time.sleep(2)
+        x = 121
+        while True:
+            self.send(('HR', 40), x, '172.20.81.141:502')
+            x = x + 1
+            time.sleep(1)
 
     def main_loop(self):
 
         logging.debug('Enters main_loop.')
         time.sleep(2)
         while True:
+            '''
             n01 = self.receive(SEN_1, '172.20.81.141:502')
             print 'Sensor S1 Value: '+str(n01)
             n02 = self.receive(SEN_2, '172.20.81.141:502')
@@ -66,6 +76,7 @@ class RawWaterTank(Tank):
             print 'Sensor S4 Value: '+str(n04)
             n05 = self.receive(SEN_5, '172.20.81.141:502')
             print 'Sensor S5 Value: '+str(n05)
+            '''
             time.sleep(PP_PERIOD_SEC)
 
 
