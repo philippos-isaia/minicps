@@ -114,12 +114,33 @@ CONNECTIONS = {
     'attacker': 's1',
 }
 
+# global definitions for sensors and actuators
+
+sen_1 = ('s1', 1, 'REAL')
+sen_2 = ('s2', 1, 'REAL')
+sen_3 = ('s3', 1, 'REAL')
+sen_4 = ('s4', 1, 'REAL')
+sen_5 = ('s5', 1, 'REAL')
+pump_1 = ('p2', 1, 'REAL')
+
+
+# definitions for reading modbus/enip messages
+# for modbus use:
+# CO (1-bit, coil, read and write)
+# DI (1-bit, discrete input, read only)
+# HR (16-bit, holding register, read and write)
+# IR (16-bit, input register, read only)
+# plus the offset
+
+SEN_1 = ('HR', 0)
+SEN_2 = ('HR', 8)
+SEN_3 = ('HR', 16)
+SEN_4 = ('HR', 24)
+SEN_5 = ('HR', 32)
+
 # PLC1 Data
 PLC1_ADDR = IP['plc1']
-PLC1_TAGS = (
-    ('s4', 1, 'REAL'),
-    ('s5', 1, 'REAL'),
-)
+PLC1_TAGS = (sen_4, sen_5,)
 PLC1_SERVER = {
     'address': PLC1_ADDR,
     'tags': PLC1_TAGS
@@ -132,14 +153,7 @@ PLC1_PROTOCOL = {
 
 # PLC2 Data
 PLC2_ADDR = IP['plc2']
-PLC2_TAGS = (
-    ('s1', 1, 'REAL'),
-    ('s2', 1, 'REAL'),
-    ('s3', 1, 'REAL'),
-    ('p2', 1, 'REAL'),
-    ('s4', 1, 'REAL'),
-    ('s5', 1, 'REAL'),
-)
+PLC2_TAGS = (sen_1, sen_2, sen_3, sen_4, sen_5, pump_1,)
 
 PLC2_SERVER = {
     'address': PLC2_ADDR,
@@ -170,3 +184,29 @@ PLC1_DATA = {
 PLC2_DATA = {
     'TODO': 'TODO',
 }
+
+PATH = 'matlab_sc1_db.sqlite'
+NAME = 'matlab_sc1'
+
+STATE = {
+    'name': NAME,
+    'path': PATH
+}
+
+SCHEMA = """
+CREATE TABLE matlab_sc1 (
+    name              TEXT NOT NULL,
+    pid               INTEGER NOT NULL,
+    value             TEXT,
+    PRIMARY KEY (name, pid)
+);
+"""
+
+SCHEMA_INIT = """
+    INSERT INTO matlab_sc1 VALUES ('s1', 1, '0.0');
+    INSERT INTO matlab_sc1 VALUES ('s2', 1, '0.0');
+    INSERT INTO matlab_sc1 VALUES ('s3', 1, '0.0');
+    INSERT INTO matlab_sc1 VALUES ('s4', 1, '0.0');
+    INSERT INTO matlab_sc1 VALUES ('s5', 1, '0.0');
+    INSERT INTO matlab_sc1 VALUES ('p2', 1, '100');
+"""

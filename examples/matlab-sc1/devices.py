@@ -359,19 +359,17 @@ class Tank(Device):
     """
 
     def __init__(
-            self, name, protocol, state,
-            section, level):
+            self, name, protocol, section, level):
         """
         :param str name: device name
         :param dict protocol: used to set up the network layer API
-        :param dict state: used to set up the physical layer API
         :param float section: cross section of the tank in m^2
         :param float level: current level in m
         """
 
         self.section = section
         self.level = level
-        super(Tank, self).__init__(name, protocol, state)
+        super(Tank, self).__init__(name, protocol)
 
     def _start(self):
 
