@@ -9,6 +9,9 @@ from minicps.mcps import MiniCPS
 from mininet.node import OVSController
 from topo import MatlabTopo
 import sys
+import os
+
+os.system("sudo killall ovs-testcontroller")
 
 
 class MatlabS1(MiniCPS):
