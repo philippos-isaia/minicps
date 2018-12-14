@@ -11,3 +11,6 @@ sudo python setup.py install
 
 sudo mkdir -p /usr/local/lib/python2.7/dist-packages/minicps/pymodbus/
 sudo cp minicps/pymodbus/* /usr/local/lib/python2.7/dist-packages/minicps/pymodbus/
+
+sudo mkdir -p /usr/local/lib/python2.7/dist-packages/minicps-1.1.3-py2.7.egg/minicps/pymodbus
+sudo cp minicps/pymodbus/* /usr/local/lib/python2.7/dist-packages/minicps-1.1.3-py2.7.egg/minicps/pymodbus/
