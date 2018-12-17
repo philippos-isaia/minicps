@@ -1,16 +1,14 @@
 """
 Scenario S1
-physical_process.py
+first_coordinator.py
 Runs on switch s1 (coordinator)
 Connection with Matlab
 """
 
-from minicps.devices import Tank
+from minicps.devices import Coordinator
 from minicps.protocols import ModbusProtocol
-from utils import S1_PROTOCOL, STATE
-from utils import TANK_SECTION
-from utils import RWT_INIT_LEVEL
-from utils import IP
+from utils import S1_PROTOCOL
+from utils import IP, STATE
 from utils import PP_PERIOD_SEC
 from utils import SEN_1, SEN_2, SEN_3, SEN_4, SEN_5
 import sys
@@ -43,16 +41,11 @@ sen_5 = ('s5', 1)
 pump_2 = ('p2', 1)
 
 
-class RawWaterTank(Tank):
+class FirstCoordinator(Coordinator):
 
     def pre_loop(self):
 
         logging.debug('Enters pre_loop.')
-        self.set(pump_2, 0)
-        self.level = self.set(sen_5, 0.800)
-        #RTU2B_ADDR = IP['rtu2b'] + ':502'
-        #HR_0_2a = ('HR', 0, '2a')
-        #self.send(HR_0_2a, registers, '172.20.81.141:502', count=3)
         time.sleep(2)
         x = 121
         while True:
@@ -82,10 +75,8 @@ class RawWaterTank(Tank):
 
 if __name__ == '__main__':
 
-    rwt = RawWaterTank(
-        name='rwt',
+    fcoo = FirstCoordinator(
+        name='fcoo',
         protocol=S1_PROTOCOL,
-        section=TANK_SECTION,
-        level=RWT_INIT_LEVEL,
         state=STATE
     )
