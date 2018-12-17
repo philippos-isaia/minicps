@@ -148,7 +148,7 @@ PLC1_SERVER = {
     'tags': PLC1_TAGS
 }
 PLC1_PROTOCOL = {
-    'name': 'enip',
+    'name': 'modbus',
     'mode': 1,
     'server': PLC1_SERVER
 }

@@ -50,6 +50,7 @@ class FirstCoordinator(Coordinator):
         time.sleep(2)
         # Implement Saving Values to DB
         while True:
+            '''
             n01 = self.receive(SEN_1, serverIP)
             print 'Sensor S1 Value: '+str(n01)
             n02 = self.receive(SEN_2, serverIP)
@@ -60,6 +61,7 @@ class FirstCoordinator(Coordinator):
             print 'Sensor S4 Value: '+str(n04)
             n05 = self.receive(SEN_5, serverIP)
             print 'Sensor S5 Value: '+str(n05)
+            '''
             time.sleep(PP_PERIOD_SEC)
 
 
