@@ -82,7 +82,7 @@ IP = {
 
 NETMASK = '/24'
 
-# use the NETMASK dictionary to define the netmasks
+# use the NETMASKS dictionary to define the netmasks
 
 NETMASKS = {
     'plc1': '/24',
