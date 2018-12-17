@@ -401,6 +401,54 @@ class Tank(Device):
             sec += 1
 
 
+class Coordinator(Device):
+
+    """Coordinator class.
+
+    Coordinator provides:
+        - protocol server
+        - communication with the DB
+    """
+
+    def __init__(
+            self, name, protocol, state):
+        # state, section, level):
+        """
+        :param str name: device name
+        :param dict protocol: used to set up the network layer API
+        :param dict state: used to set up the physical layer API
+        """
+
+        super(Coordinator, self).__init__(name, protocol, state)
+
+    def _start(self):
+
+        self.pre_loop()
+        self.main_loop()
+
+    def pre_loop(self, sleep=0.5):
+        """Coordinator pre_loop.
+
+        :param float sleep: second[s] to sleep before returning
+        """
+
+        print "TODO Coordinator pre_loop: please override me"
+
+    def main_loop(self, sleep=0.5):
+        """Coordinator main loop.
+
+        :param float sleep: second[s] to sleep after each iteration
+        """
+
+        sec = 0
+        while(sec < 1):
+
+            print "TODO Coordinator main_loop: please override me"
+            time.sleep(sleep)
+
+            sec += 1
+
+
 class SCADAServer(Device):
 
     """SCADAServer class.
