@@ -18,13 +18,13 @@ PLC2_ADDR = IP['plc2']
 s4 = ('s4', 1)
 s5 = ('s5', 1)
 # s6 = ('s6', 1)
-serverIP = IP['s1'] + ':502'
+serverIP = IP['plc1'] + ':502'
 
 class MatlabPLC1(PLC):
 
     def pre_loop(self, sleep=0.1):
         logging.debug('Enters pre_loop')
-        time.sleep(sleep)
+        time.sleep(2)
 
     def main_loop(self):
         """PLC1 main loop.

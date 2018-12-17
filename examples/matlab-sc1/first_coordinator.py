@@ -51,6 +51,11 @@ class FirstCoordinator(Coordinator):
         # Implement Saving Values to DB
         while True:
             '''
+            n04 = self.receive(SEN_4, serverIP)
+            self.send(('HR', 0), n04, '192.168.1.10:502')
+            n05 = self.receive(SEN_5, serverIP)
+            self.send(('HR', 8), n05, '192.168.1.10:502')
+            
             n01 = self.receive(SEN_1, serverIP)
             print 'Sensor S1 Value: '+str(n01)
             n02 = self.receive(SEN_2, serverIP)
