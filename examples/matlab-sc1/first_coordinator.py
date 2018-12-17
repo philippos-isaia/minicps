@@ -14,19 +14,6 @@ from utils import SEN_1, SEN_2, SEN_3, SEN_4, SEN_5
 import sys
 import logging
 import time
-import struct
-
-getBin = lambda x: x > 0 and str(bin(x))[2:] or "-" + str(bin(x))[3:]
-
-
-def floatToBinary64(value):
-    val = struct.unpack('Q', struct.pack('d', value))[0]
-    return getBin(val)
-
-
-def binaryToFloat(value):
-    hx = hex(int(value, 2))
-    return struct.unpack("d", struct.pack("q", int(hx, 16)))[0]
 
 
 S1_ADDR = IP['s1'] + ':502'
@@ -40,6 +27,8 @@ sen_4 = ('s4', 1)
 sen_5 = ('s5', 1)
 pump_2 = ('p2', 1)
 
+serverIP = IP['s1'] + ':502'
+
 
 class FirstCoordinator(Coordinator):
 
@@ -47,29 +36,30 @@ class FirstCoordinator(Coordinator):
 
         logging.debug('Enters pre_loop.')
         time.sleep(2)
+        '''
         x = 121
         while True:
-            self.send(('HR', 40), x, '172.20.81.141:502')
+            self.send(('HR', 40), x, serverIP)
             x = x + 1
             time.sleep(1)
+        '''
 
     def main_loop(self):
 
         logging.debug('Enters main_loop.')
         time.sleep(2)
+        # Implement Saving Values to DB
         while True:
-            '''
-            n01 = self.receive(SEN_1, '172.20.81.141:502')
+            n01 = self.receive(SEN_1, serverIP)
             print 'Sensor S1 Value: '+str(n01)
-            n02 = self.receive(SEN_2, '172.20.81.141:502')
+            n02 = self.receive(SEN_2, serverIP)
             print 'Sensor S2 Value: '+str(n02)
-            n03 = self.receive(SEN_3, '172.20.81.141:502')
+            n03 = self.receive(SEN_3, serverIP)
             print 'Sensor S3 Value: '+str(n03)
-            n04 = self.receive(SEN_4, '172.20.81.141:502')
+            n04 = self.receive(SEN_4, serverIP)
             print 'Sensor S4 Value: '+str(n04)
-            n05 = self.receive(SEN_5, '172.20.81.141:502')
+            n05 = self.receive(SEN_5, serverIP)
             print 'Sensor S5 Value: '+str(n05)
-            '''
             time.sleep(PP_PERIOD_SEC)
 
 

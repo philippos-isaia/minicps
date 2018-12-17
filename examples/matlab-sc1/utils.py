@@ -13,33 +13,15 @@ swat = build_debug_logger(
     ldir='logs/',
     suffix='')
 
-# physical process {{{1
-# SPHINX_SWAT_TUTORIAL PROCESS UTILS(
+# Define physical constants that can be used
+# by the Coordinator & PLCs for
+# decision making
+
 GRAVITATION = 9.81             # m.s^-2
 TANK_DIAMETER = 1.38           # m
 TANK_SECTION = 1.5             # m^2
-PUMP_FLOWRATE_IN = 2.55        # m^3/h spec say btw 2.2 and 2.4
-PUMP_FLOWRATE_OUT = 2.45       # m^3/h spec say btw 2.2 and 2.4
-
-# periods in msec
-# R/W = Read or Write
-T_PLC_R = 100E-3
-T_PLC_W = 100E-3
-
-T_PP_R = 200E-3
-T_PP_W = 200E-3
-T_HMI_R = 100E-3
-
-# ImageTk
-DISPLAYED_SAMPLES = 14
-
-# Control logic thresholds
-tankp1_M = {  # raw water tank m
-    'LL': 0.250,
-    'L': 0.500,
-    'H': 0.800,
-    'HH': 0.900,
-}
+PUMP_FLOWRATE_IN = 2.55        # m^3/h
+PUMP_FLOWRATE_OUT = 2.45       # m^3/h
 
 TANK_HEIGHT = 1.600  # m
 
@@ -56,6 +38,26 @@ RWT_INIT_LEVEL = 0.500  # l
 
 # m^3 / h
 FIT_201_THRESH = 1.00
+
+# periods in msec
+# R/W = Read or Write
+T_PLC_R = 100E-3
+T_PLC_W = 100E-3
+
+T_PP_R = 200E-3
+T_PP_W = 200E-3
+T_HMI_R = 100E-3
+
+# ImageTk
+DISPLAYED_SAMPLES = 14
+
+# Define control logic thresholds
+tankp1_M = {
+    'LL': 0.250,
+    'L': 0.500,
+    'H': 0.800,
+    'HH': 0.900,
+}
 
 # IP, Netmask and MAC addresses
 
