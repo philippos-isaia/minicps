@@ -41,7 +41,7 @@ class MatlabS1(MiniCPS):
         plc1.cmd('tshark -ni any -w plc1-eth0.pcap &')
 
         # Physical Process Might not be needed (check this out)
-        # s1.cmd(sys.executable + ' physical_process.py &')
+        # s1.cmd(sys.executable + ' first_coordinator.py &')
 
         CLI(self.net)
 
