@@ -38,10 +38,10 @@ class MatlabPLC1(PLC):
         count = 0
         while(count <= PLC_SAMPLES):
 
-            n04 = self.receive(SEN_4, serverIP)
+            n04 = self.receive(('HR', 0), serverIP)
             print 'Sensor S4 Value: '+str(n04)
-            n05 = self.receive(SEN_5, serverIP)
-            print 'Sensor S5 Value: '+str(n05)
+            #n05 = self.receive(SEN_5, serverIP)
+            #print 'Sensor S5 Value: '+str(n05)
             # Tank p1 fill percentage
             #tankp1 = float(self.get(s5))
             #flow_s4 = float(self.get(s4))

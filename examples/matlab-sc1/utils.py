@@ -65,20 +65,21 @@ tankp1_M = {
 # use the HOSTS list to define the names of the hosts
 # this includes PLCs, attackers or any other host but NOT the coordinator or switches
 
-HOSTS = ['plc1', 'plc2', 'plc3', 'attacker']
+HOSTS = ['coor', 'plc1', 'plc2', 'attacker']
 
 # use the SWITCHES list to define the names of the coordinators or switches
 
 SWITCHES = ['s1']
 
+NAT = True
 # use the IP dictionary to define the IP addresses of each component
 # i.e. hosts and switches
 
 IP = {
-    'plc1': '192.168.1.10',
-    'plc2': '192.168.1.20',
-    'plc3': '192.168.1.30',
-    'attacker': '192.168.1.40',
+    'coor': '192.168.1.10',
+    'plc1': '192.168.1.20',
+    'plc2': '192.168.1.30',
+    'attacker': '192.168.1.50',
     's1': '172.20.81.141',
 }
 
@@ -87,9 +88,9 @@ NETMASK = '/24'
 # use the NETMASKS dictionary to define the netmasks
 
 NETMASKS = {
+    'coor': '/24',
     'plc1': '/24',
     'plc2': '/24',
-    'plc3': '/24',
     'attacker': '/24',
     's1': '/24',
 }
@@ -98,9 +99,9 @@ NETMASKS = {
 # i.e. hosts and switches
 
 MAC = {
+    'coor': '00:1D:9C:C7:B0:30',
     'plc1': '00:1D:9C:C7:B0:70',
     'plc2': '00:1D:9C:C8:BC:46',
-    'plc3': '00:1D:9C:C8:BC:47',
     'attacker': '00:1D:9C:C8:BC:48',
     's1': '08:00:27:39:a6:83',
 }
@@ -110,9 +111,9 @@ MAC = {
 # note: connections are bidirectional, therefore define them once
 
 CONNECTIONS = {
+    'coor': 's1',
     'plc1': 's1',
     'plc2': 's1',
-    'plc3': 's1',
     'attacker': 's1',
 }
 
@@ -142,7 +143,8 @@ SEN_5 = ('HR', 32)
 
 # PLC1 Data
 PLC1_ADDR = IP['plc1']
-PLC1_TAGS = (sen_4, sen_5,)
+#PLC1_TAGS = (sen_4, sen_5,)
+PLC1_TAGS = (10, 10, 10, 100)
 PLC1_SERVER = {
     'address': PLC1_ADDR,
     'tags': PLC1_TAGS
@@ -156,28 +158,41 @@ PLC1_PROTOCOL = {
 # PLC2 Data
 PLC2_ADDR = IP['plc2']
 PLC2_TAGS = (sen_1, sen_2, sen_3, sen_4, sen_5, pump_1,)
-
+'''
 PLC2_SERVER = {
     'address': PLC2_ADDR,
     'tags': PLC2_TAGS
 }
 PLC2_PROTOCOL = {
-    'name': 'enip',
+    'name': 'modbus',
     'mode': 1,
     'server': PLC2_SERVER
 }
-S1_TAGS = (10, 10, 10, 100)
-S1_ADDR = IP['s1']
-S1_SERVER = {
-    'address': S1_ADDR,
-    'tags': S1_TAGS
+'''
+COOR_TAGS = (10, 10, 10, 100)
+COOR_ADDR = IP['coor']
+COOR_SERVER = {
+    'address': COOR_ADDR,
+    'tags': COOR_TAGS
 }
-S1_PROTOCOL = {
+COOR_PROTOCOL = {
     'name': 'modbus',
     'mode': 1,
-    'server': S1_SERVER
+    'server': COOR_SERVER
 }
-
+'''
+COORDINATOR_TAGS = (10, 10, 10, 100)
+COORDINATOR_ADDR = IP['coor']
+COORDINATOR_SERVER = {
+    'address': COORDINATOR_ADDR,
+    'tags': COORDINATOR_TAGS
+}
+COORDINATOR_PROTOCOL = {
+    'name': 'modbus',
+    'mode': 1,
+    'server': COORDINATOR_SERVER
+}
+'''
 # TODO
 PLC1_DATA = {
     'TODO': 'TODO',

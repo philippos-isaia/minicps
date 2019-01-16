@@ -20,7 +20,7 @@ class MatlabTopo(Topo):
             variables[switch] = self.addSwitch(switch)
 
         for host in HOSTS:
-            variables[host] = self.addHost(host, ip=IP[host]+NETMASKS[host], mac=MAC[host])
+            variables[host] = self.addHost(host, ip=IP[host]+NETMASKS[host])
 
         for connection in CONNECTIONS:
             self.addLink(connection, CONNECTIONS[connection])

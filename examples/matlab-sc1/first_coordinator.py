@@ -7,7 +7,8 @@ Connection with Matlab
 
 from minicps.devices import Coordinator
 from minicps.protocols import ModbusProtocol
-from utils import S1_PROTOCOL
+# from utils import COORDINATOR_PROTOCOL, S1_PROTOCOL
+from utils import COOR_PROTOCOL
 from utils import IP, STATE
 from utils import PP_PERIOD_SEC
 from utils import SEN_1, SEN_2, SEN_3, SEN_4, SEN_5
@@ -16,7 +17,7 @@ import logging
 import time
 
 
-S1_ADDR = IP['s1'] + ':502'
+COORDINATOR_ADDR = IP['coor'] + ':502'
 logging.basicConfig(format='PhyP::%(asctime)s::%(levelname)s::%(message)s', filename='logs/master_log.log', level=logging.DEBUG)
 
 # sensors & actuators definition
@@ -27,8 +28,8 @@ sen_4 = ('s4', 1)
 sen_5 = ('s5', 1)
 pump_2 = ('p2', 1)
 
-serverIP = IP['s1'] + ':502'
-
+serverIP = IP['coor'] + ':502'
+receiIP = IP['plc1'] + ':502'
 
 class FirstCoordinator(Coordinator):
 
@@ -36,13 +37,7 @@ class FirstCoordinator(Coordinator):
 
         logging.debug('Enters pre_loop.')
         time.sleep(2)
-        '''
-        x = 121
-        while True:
-            self.send(('HR', 40), x, serverIP)
-            x = x + 1
-            time.sleep(1)
-        '''
+        # Use the pre-loop to perform some initial operations
 
     def main_loop(self):
 
@@ -50,12 +45,10 @@ class FirstCoordinator(Coordinator):
         time.sleep(2)
         # Implement Saving Values to DB
         while True:
-            '''
+
             n04 = self.receive(SEN_4, serverIP)
-            self.send(('HR', 0), n04, '192.168.1.10:502')
-            n05 = self.receive(SEN_5, serverIP)
-            self.send(('HR', 8), n05, '192.168.1.10:502')
-            
+            print 'Sensor S4 Value: '+str(n04)
+            '''
             n01 = self.receive(SEN_1, serverIP)
             print 'Sensor S1 Value: '+str(n01)
             n02 = self.receive(SEN_2, serverIP)
@@ -74,6 +67,6 @@ if __name__ == '__main__':
 
     fcoo = FirstCoordinator(
         name='fcoo',
-        protocol=S1_PROTOCOL,
+        protocol=COOR_PROTOCOL,
         state=STATE
     )

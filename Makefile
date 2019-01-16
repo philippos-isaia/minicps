@@ -36,6 +36,11 @@ matlab-sc1:
 test-matlab-sc1:
 	cd examples/matlab-sc1; $(TESTER) $(TESTER_OPTS) tests.py; cd ../..
 
+matlab-sc2:
+	cd examples/matlab-sc2; $(PYTHON) $(PYTHON_OPTS) run.py; cd ../..
+
+matlab-sc2-init:
+	cd examples/matlab-sc2; $(PYTHON) $(PYTHON_OPTS) init.py; cd ../..
 # }}}
 
 # TESTS {{{1
